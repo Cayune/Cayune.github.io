@@ -18,17 +18,19 @@
     <script>
 	var nodeMap = [];
 	var bounds = new L.LatLngBounds(new L.LatLng(0, 0), new L.LatLng(180, 180));
-	var overlay = new L.ImageOverlay("chart.png",
-	  bounds, {
-		opacity: 1,
-		interactive: true
-	  });
+	    /// Adding map tileLayer to allow loading smaller images
+	var ch1Underground = L.tileLayer('maps/Chapter 1 Underground/{z}/{x}-{y}.png', {
+		minZoom: 0,
+		maxZoom:5,
+		noWrap: true,
+		attribution: 'Cayune`s Chart of Charts - <a href="https://soulforged.net/#/home">Soulforged</a>'
+	});
 
 	var map = new L.Map('map', {
 	  center: bounds.getCenter(),
 	  minZoom: 3,
 	  maxZoom: 5,
-	  layers: [overlay],
+	  layers: [ch1Underground],
 	  maxBounds: bounds
 	});
 	map.getRenderer(map).options.padding = 100;
